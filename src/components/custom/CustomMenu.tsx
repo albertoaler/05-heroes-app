@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
-import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "../ui/navigation-menu";
+import { NavigationMenuItem, NavigationMenuLink } from "@radix-ui/react-navigation-menu";
 import { Link, useLocation } from "react-router";
+import { NavigationMenu, NavigationMenuList } from "../ui/navigation-menu";
 
 
 export const CustomMenu = () => {
@@ -17,7 +18,7 @@ export const CustomMenu = () => {
         {/* Home Page */}
         <NavigationMenuItem>
           <NavigationMenuLink asChild
-            className={cn(isActive('/') && 'bg-slate-200 rouded-md p-2' + navigationMenuTriggerStyle())}
+            className={cn(isActive('/') && 'bg-slate-200', 'rouded-md p-2')}
           >
             <Link to="/">Inicio</Link>
           </NavigationMenuLink>
@@ -26,7 +27,7 @@ export const CustomMenu = () => {
         {/* Search page */}
         <NavigationMenuItem>
           <NavigationMenuLink asChild
-            className={cn(isActive('/search') && 'bg-slate-200 rouded-md p-2' + navigationMenuTriggerStyle())}
+            className={cn(isActive('/search') && 'bg-slate-200', 'rouded-md p-2')}
           >
             <Link to="/search">Búsqueda</Link>
           </NavigationMenuLink>

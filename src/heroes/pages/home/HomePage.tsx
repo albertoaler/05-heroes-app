@@ -6,6 +6,7 @@ import { CustomJumbotron } from "@/components/custom/CustomJumbotron";
 import { HeroStats } from "@/heroes/components/HeroStats";
 import { HeroGrid } from "@/heroes/components/HeroGrid";
 import { CustomPagination } from "@/components/custom/CustomPagination";
+import { CustomBreadcrumbs } from "@/components/custom/CustomBreadcrumbs";
 
 export const HomePage = () => {
 
@@ -23,6 +24,9 @@ export const HomePage = () => {
           title="Universo de Superhéroes"
           description="Descubre, explora y administra superhéroes y villanos"
         />
+
+        {/* BreadCrumbs */}
+        <CustomBreadcrumbs currentPage="Súper Héroes" />
 
         {/* Stats Dashboard */}
         <HeroStats />
