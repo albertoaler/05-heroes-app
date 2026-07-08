@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CustomJumbotron } from "@/components/custom/CustomJumbotron";
@@ -7,6 +7,7 @@ import { HeroStats } from "@/heroes/components/HeroStats";
 import { HeroGrid } from "@/heroes/components/HeroGrid";
 import { CustomPagination } from "@/components/custom/CustomPagination";
 import { CustomBreadcrumbs } from "@/components/custom/CustomBreadcrumbs";
+import { getHeroesByPage } from "@/heroes/actions/get-heroes-by-page.action";
 
 export const HomePage = () => {
 
@@ -16,6 +17,13 @@ export const HomePage = () => {
     'heroes' |
     'villains'
   >('all');
+
+  // This is not recommended because whenever the component is build/re-build, will trigger the effect
+  useEffect(() => {
+    getHeroesByPage().then((heroes) => {
+      console.log({ heroes });
+    });
+  }, []);
 
   return (
     <>
