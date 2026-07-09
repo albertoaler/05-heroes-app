@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
+import { useQuery } from "@tanstack/react-query";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CustomJumbotron } from "@/components/custom/CustomJumbotron";
 
 import { HeroStats } from "@/heroes/components/HeroStats";
 import { HeroGrid } from "@/heroes/components/HeroGrid";
 import { CustomPagination } from "@/components/custom/CustomPagination";
 import { CustomBreadcrumbs } from "@/components/custom/CustomBreadcrumbs";
-import { getHeroesByPage } from "@/heroes/actions/get-heroes-by-page.action";
+import { getHeroesByPageAction } from "@/heroes/actions/get-heroes-by-page.action";
+import { CustomJumbotron } from "@/components/custom/CustomJumbotron";
 
 export const HomePage = () => {
 
@@ -18,12 +20,16 @@ export const HomePage = () => {
     'villains'
   >('all');
 
+  const { data: heroesResponse } = useQuery({
+    queryKey: ['heroes'],
+    queryFn: () => getHeroesByPageAction(),
+    staleTime: 1000 * 60 * 5 // 5 minutes
+  });
+
   // This is not recommended because whenever the component is build/re-build, will trigger the effect
-  useEffect(() => {
-    getHeroesByPage().then((heroes) => {
-      console.log({ heroes });
-    });
-  }, []);
+  // useEffect(() => {
+  //   getHeroesByPageAction().then();
+  // }, []);
 
   return (
     <>
